@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "devtools t3js",
+    "description": "Easily monitor T3 based applications",
+    "version": "0.2",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "devtools_page": "devtools.html",
+    "permissions": [
+        "<all_urls>",
+        "tabs"
+    ]
+}
