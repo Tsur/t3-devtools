@@ -20,7 +20,7 @@ function onPageDetailsReceived(message)  {
 
 var injectDebugger = function() {
 
-    return "inject.bundle.js";
+    return "content.bundle.js";
 
     // load injected script
     //var xhr = new XMLHttpRequest();

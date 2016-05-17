@@ -38,7 +38,7 @@ function init(){
         //chrome.runtime.sendMessage(message);
     });
 
-    injectScript(chrome.extension.getURL('inject_script.bundle.js'), 'body');
+    injectScript(chrome.extension.getURL('inject.bundle.js'), 'body');
 
 }
 

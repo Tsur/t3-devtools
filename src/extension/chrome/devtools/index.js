@@ -1,12 +1,7 @@
 
-var createSidebarPane = chrome.devtools.panels.create;
-//var createSidebarPane = chrome.devtools.panels.elements.createSidebarPane;
-var extensionTitle = "T3";
-var extensionPage = "pane.html";
+const extensionTitle = "T3";
+const extensionIcon = "img/icon.png";
+const extensionPage = "devpanel.html";
+const panelCallback = panel => {};
 
-//createSidebarPane(extensionTitle, function(sidebar) {
-//    // sidebar initialization code here
-//    sidebar.setPage(extensionPage);
-//});
-
-createSidebarPane(extensionTitle, "icon.png", extensionPage, function(sidebar) {});
+chrome.devtools.panels.create(extensionTitle, extensionIcon, extensionPage, panelCallback);

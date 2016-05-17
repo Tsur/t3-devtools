@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "devtools t3js",
+    "name": "T3JS devtools",
     "description": "Easily monitor T3 based applications",
     "version": "0.2",
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["background.bundle.js"],
         "persistent": false
     },
     "devtools_page": "devtools.html",
@@ -12,5 +12,5 @@
         "<all_urls>",
         "tabs"
     ],
-    "web_accessible_resources" : ["content-script-injected.js"]
+    "web_accessible_resources" : ["inject.bundle.js"]
 }
