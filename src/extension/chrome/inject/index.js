@@ -1,11 +1,7 @@
 
-function postMessage(data){
 
-    chrome.extension.sendMessage(data, function(message){});
-}
+function init(){
 
-
-(function(){
 
     var application = window.Box && window.Box.Application ? window.Box.Application : null;
 
@@ -15,11 +11,11 @@ function postMessage(data){
         return postMessage({"error":"no t3 in page"});
     }
 
-    application.on('message', function(data){
 
-       postMessage({type:"1", data:data});
+    console.log('t3 in on page');
 
-    });
+    return window.postMessage({"error":"t3 is in page"}, '*');
 
-})();
+}
 
+init();
