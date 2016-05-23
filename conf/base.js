@@ -26,15 +26,14 @@ const baseConfig = (params) => ({
     ],
     module: {
         loaders: [
-            ...(params.loaders ? params.loaders : [{
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: /node_modules/
-            }]),
-            {
-                test: /\.css?$/,
-                loaders: ['style', 'raw']
-            }
+            ...(params.loaders ? params.loaders : [
+
+                {
+                    test: /\.js$/,
+                    loaders: ['babel'],
+                    exclude: /node_modules/
+                }
+            ])
         ]
     }
 });

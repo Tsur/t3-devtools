@@ -3,9 +3,12 @@ const extensionListener = function (port) {
 
     return (message, sender, sendResponse) => {
 
-        if(message.tabId && message.content) {
+        if(message.tabId) {
 
-            chrome.tabs.executeScript(message.tabId, {file: message.content});
+            console.log('message to tab content script');
+
+            if(message.inject) return chrome.tabs.executeScript(message.tabId, {file: message.inject});
+            if(message.elementID) return chrome.tabs.sendMessage(message.tabId, message);
 
         } else {
 
@@ -18,6 +21,6 @@ const extensionListener = function (port) {
 
 };
 
-chrome.extension.onConnect.addListener(port => chrome.extension.onMessage.addListener(extensionListener(port)));
+chrome.runtime.onConnect.addListener(port => chrome.runtime.onMessage.addListener(extensionListener(port)));
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => true);
+//chrome.runtime.onMessage.addListener((request, sender, sendResponse) => true);

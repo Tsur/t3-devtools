@@ -1,27 +1,18 @@
 
-// This callback function is called when the content script has been
-// injected and returned its results
-function onPageDetailsReceived(message)  {
+import React from 'react';
+import { render } from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import App from './app';
 
-    return document.querySelector('p').textContent = JSON.stringify(message);
-}
+// Needed for Events
+injectTapEventPlugin();
 
+const DevToolExtension = () => (
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <App />
+    </MuiThemeProvider>
+);
 // When the popup HTML has loaded
-window.addEventListener('load', function() {
-
-    // Create a connection to the background page
-    const backgroundPageConnection = chrome.runtime.connect({
-        name: 'panel'
-    });
-
-    // Send init message to background
-    chrome.extension.sendMessage({
-        name: 'init',
-        tabId: chrome.devtools.inspectedWindow.tabId,
-        content: 'content.bundle.js'
-    });
-
-    // Listen to messages coming from background
-    backgroundPageConnection.onMessage.addListener(onPageDetailsReceived);
-
-});
+window.addEventListener('load', () => render(<DevToolExtension />, document.querySelector('.app')));
