@@ -15,7 +15,7 @@ class App extends React.Component {
 
         this.setBackgroundConnection();
 
-        this.state = {t3:false, messages:[]};
+        this.state = {t3:false, messages:[], errors:[]};
 
     }
 
@@ -30,7 +30,7 @@ class App extends React.Component {
             case MESSAGES.BROADCAST:
                 return this.setState({'t3': true, 'messages': this.state.messages.concat(message.data)});
             case MESSAGES.ERROR:
-                return console.log('error', message);
+                return this.setState({'t3': true, 'errors': this.state.errors.concat(message.data)});
             default: return;
 
         }
@@ -56,7 +56,12 @@ class App extends React.Component {
 
     render() {
 
-        return (this.state.t3 ? <T3 modules={this.state.modules} messages={this.state.messages}/> : <Alert />);
+        return (
+
+            this.state.t3 ?
+            <T3 modules={this.state.modules} messages={this.state.messages} errors={this.state.errors} /> :
+            <Alert />
+        );
     }
 }
 
