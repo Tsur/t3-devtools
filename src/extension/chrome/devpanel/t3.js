@@ -1,6 +1,7 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Modules from './modules';
+import Messages from './messages';
 
 class T3 extends React.Component {
 
@@ -17,9 +18,7 @@ class T3 extends React.Component {
                     <Modules modules={this.props.modules} />
                 </Tab>
                 <Tab label="Messages">
-                    <div>
-                        <p>Messages</p>
-                    </div>
+                    <Messages messages={this.props.messages} />
                 </Tab>
                 <Tab label="Errors">
                     <div>

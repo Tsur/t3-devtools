@@ -21,7 +21,7 @@ function init(){
 
     window.addEventListener('message', event => {
 
-        console.log('comming from', new Date().getTime(), event.origin || event.originalEvent.origin);
+        console.log('comming from', new Date().getTime(), event.origin || event.originalEvent.origin, event);
         postMessage(event.data)
     });
 
