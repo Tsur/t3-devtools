@@ -23,7 +23,7 @@ class Errors extends React.Component {
                     {this.props.errors.map( (error, index) => (
                         <TableRow key={index} selected={error.selected}>
                             <TableRowColumn>{index}</TableRowColumn>
-                            <TableRowColumn>{new Date().toLocaleDateString()}</TableRowColumn>
+                            <TableRowColumn>{new Date().toLocaleTimeString()}</TableRowColumn>
                             <TableRowColumn>{JSON.stringify(error.exception)}</TableRowColumn>
                         </TableRow>
                     ))}
