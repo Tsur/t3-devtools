@@ -1,6 +1,17 @@
 import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
+
+function getNodeSubtree(element){
+
+    const parentElement = element.parentElement;
+
+    if(!parentElement) return [];
+
+    return [parentElement].concat(getNodeSubtree(parentElement));
+
+}
+
 class Modules extends React.Component {
 
     constructor(props) {
@@ -9,6 +20,15 @@ class Modules extends React.Component {
 
         this.onMouseEnterHandler = this.onMouseEnterHandler.bind(this);
         this.onMouseLeaveHandler = this.onMouseLeaveHandler.bind(this);
+        this.onClickHandler = this.onClickHandler.bind(this);
+
+        this.styles = {
+
+            "moduleDOM": {
+
+                "cursor": "pointer"
+            }
+        };
     }
 
     onMouseEnterHandler(event){
@@ -29,6 +49,11 @@ class Modules extends React.Component {
         });
     }
 
+    onClickHandler(event){
+
+        chrome.devtools.inspectedWindow.eval("inspect(document.getElementById('"+event.target.textContent+"'))");
+    }
+
     render() {
 
         return (
@@ -44,7 +69,7 @@ class Modules extends React.Component {
                     {this.props.modules.map( (module, index) => (
                         <TableRow key={index} selected={module.selected}>
                             <TableRowColumn>{module.name}</TableRowColumn>
-                            <TableRowColumn><div onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{module.dom}</div></TableRowColumn>
+                            <TableRowColumn><div style={this.styles.moduleDOM} onClick={this.onClickHandler} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{module.dom}</div></TableRowColumn>
                             <TableRowColumn>{module.status}</TableRowColumn>
                         </TableRow>
                     ))}
